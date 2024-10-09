@@ -14,7 +14,6 @@ public class TelegramBotService {
         this.handler = handler;
     }
 
-    @PostConstruct
     public void content(Content content) {
         handler.receive(content);
     }

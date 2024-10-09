@@ -1,5 +1,6 @@
 package ru.job4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,10 @@ import ru.job4j.content.Content;
 
 @SpringBootApplication
 public class Main {
+
+    @Autowired
+    BeanNameAware beanNameAware;
+
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
@@ -19,6 +24,8 @@ public class Main {
         return args -> {
             var bot = ctx.getBean(TelegramBotService.class);
             bot.content(new Content());
+            beanNameAware.displayAllBeanNames();
+
         };
     }
 }
