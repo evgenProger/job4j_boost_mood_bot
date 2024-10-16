@@ -1,6 +1,5 @@
 package ru.job4j.handler;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import ru.job4j.content.Content;
 

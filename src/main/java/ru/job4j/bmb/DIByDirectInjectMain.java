@@ -1,6 +1,6 @@
 package ru.job4j.bmb;
 
-import ru.job4j.bmb.services.TelegramBotService;
+import ru.job4j.service.TelegramBotService;
 import ru.job4j.content.Content;
 import ru.job4j.handler.BotCommandHandler;
 
