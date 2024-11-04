@@ -6,8 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import ru.job4j.service.TelegramBotService;
-import ru.job4j.content.Content;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+import ru.job4j.service.TgRemoteService;
 
 @SpringBootApplication
 public class Main {
@@ -22,9 +24,14 @@ public class Main {
     @Bean
     public CommandLineRunner initTelegramApi(ApplicationContext ctx) {
         return args -> {
-            var bot = ctx.getBean(TelegramBotService.class);
-            bot.content(new Content());
-            beanNameAware.displayAllBeanNames();
+            var bot = ctx.getBean(TgRemoteService.class);
+            var botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            try {
+                botsApi.registerBot(bot);
+                System.out.println("Бот успешно зарегестрирован");
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
         };
     }
 }
