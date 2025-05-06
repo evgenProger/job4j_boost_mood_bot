@@ -1,6 +1,8 @@
 package ru.job4j;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,6 +34,13 @@ public class Main {
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
+        };
+    }
+
+    @Bean
+    public CommandLineRunner checkEnv(ApplicationContext ctx) {
+        return args -> {
+            System.out.println(ctx.getEnvironment().getProperty("telegram.bot.name"));
         };
     }
 }
