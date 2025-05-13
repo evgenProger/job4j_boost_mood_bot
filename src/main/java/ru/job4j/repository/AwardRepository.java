@@ -6,13 +6,14 @@ import ru.job4j.model.Award;
 import ru.job4j.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AwardRepository extends CrudRepository<Award, Long> {
     
     List<Award> findAll();
 
-    Award findByAwardId(Long clientId);
+    Optional<Award> findById(Long clientId);
 
     Award save(Award award);
 }

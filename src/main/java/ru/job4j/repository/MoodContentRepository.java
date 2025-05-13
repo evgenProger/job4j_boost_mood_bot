@@ -5,13 +5,14 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.model.MoodContent;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MoodContentRepository extends CrudRepository<MoodContent, Long> {
 
     List<MoodContent> findAll();
 
-    MoodContent findByMoodContentId(Long moodContentId);
+    Optional<MoodContent> findById(Long moodContentId);
 
     MoodContent save(MoodContent moodContent);
 }

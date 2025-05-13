@@ -6,13 +6,14 @@ import ru.job4j.model.Achievement;
 import ru.job4j.model.MoodLog;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AchievementRepository extends CrudRepository<Achievement, Long> {
 
     List<Achievement> findAll();
 
-    Achievement findByAchievemenyId(Long achievementId);
+    Optional<Achievement> findById(Long achievementId);
 
     Achievement save(Achievement achievement);
 }
