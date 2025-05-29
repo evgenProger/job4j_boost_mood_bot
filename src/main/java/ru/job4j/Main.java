@@ -51,6 +51,9 @@ public class Main {
                                    MoodContentRepository moodContentRepository,
                                    AwardRepository awardRepository) {
         return args -> {
+            moodContentRepository.deleteAll();
+            moodRepository.deleteAll();
+            awardRepository.deleteAll();
             if (!moodRepository.findAll().isEmpty()) {
                 return;
             }

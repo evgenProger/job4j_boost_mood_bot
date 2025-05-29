@@ -1,5 +1,6 @@
 package ru.job4j.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -8,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import ru.job4j.model.Content;
 import ru.job4j.model.User;
 import ru.job4j.repository.UserRepository;
 
@@ -22,6 +24,9 @@ public class TgRemoteService extends TelegramLongPollingBot {
     private final String botToken;
     private final UserRepository userRepository;
     private static final Map<String, String> MOOD_RESP = new HashMap<>();
+
+    @Autowired
+    MoodService moodService;
 
     public TgRemoteService(@Value("${telegram.bot.name}") String botName,
                            @Value("${telegram.bot.token}") String botToken,
